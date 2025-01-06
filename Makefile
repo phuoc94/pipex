@@ -15,7 +15,9 @@ CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = ./src
 
-SRC_FILES = $(SRC_DIR)/main.c \
+SRC_FILES = \
+	$(SRC_DIR)/main.c \
+	$(SRC_DIR)/initial_setup.c \
 
 OBJS = $(SRC_FILES:.c=.o)
 
