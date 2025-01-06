@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 18:26:02 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/05 07:26:49 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/06 15:30:00 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,17 @@ NAME = pipex
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+LIBFT_DIR = lib/libft
+LIBFT_NAME = libft.a
+LIBFT_PATH = $(LIBFT_DIR)/$(LIBFT_NAME)
+
+$(LIBFT_PATH):
+	make -C $(LIBFT_DIR)
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(LIBFT_PATH)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_PATH)
 
 clean:
 	rm -f $(OBJS)
