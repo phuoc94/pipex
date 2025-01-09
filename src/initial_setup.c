@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 21:26:52 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/06 19:35:04 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:33:21 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	validate_args(int argc, char **argv)
 	(void)argv;
 	if (argc != 5)
 	{
-		ft_putstr_fd("Error: Invalid argument.\n", 2);
+		ft_perror("Invalid argument", NULL);
 		ft_putstr_fd("Usage: ./pipex file1 cmd1 cmd2 file2\n", 2);
 		exit(EXIT_FAILURE);
 	}

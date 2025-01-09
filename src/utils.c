@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 19:35:53 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/06 19:58:30 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/09 13:26:34 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	create_pipe(int fd[2])
 {
 	if (pipe(fd) == -1)
 	{
-		ft_putstr_fd("Error: Pipe failed.\n", 2);
+		ft_perror("Create pipe failed", NULL);
 		exit(EXIT_FAILURE);
 	}
 
@@ -30,7 +30,7 @@ int	create_fork(void)
 	pid = fork();
 	if (pid == -1)
 	{
-		ft_putstr_fd("Error: Fork failed.\n", 2);
+		ft_perror("Create fork failed", NULL);
 		exit(EXIT_FAILURE);
 	}
 
