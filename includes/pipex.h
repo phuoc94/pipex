@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/07 21:42:04 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:41:21 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 # include "../lib/libft/includes/libft.h"
 # include <sys/wait.h> // waitpid
 
-int	validate_args(int argc, char **argv);
-int	create_pipe(int fd[2]);
-int	create_fork(void);
+int		validate_args(int argc, char **argv);
+int		create_pipe(int fd[2]);
+int		create_fork(void);
+void	execute_command(char *cmd, char **envp);
+void	handle_child1(int *fd, char **argv, char **envp);
+void	handle_child2(int *fd, char **argv, char **envp);
 
 void	ft_perror(char *message, char *detail);
 

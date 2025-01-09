@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 18:26:02 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/07 21:33:41 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/09 13:50:35 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ UTILS_DIR = ./utils
 SRC_FILES = \
 	$(SRC_DIR)/main.c \
 	$(SRC_DIR)/initial_setup.c \
+	$(SRC_DIR)/child_process.c \
+	$(SRC_DIR)/execute.c \
 	$(SRC_DIR)/utils.c \
 	$(UTILS_DIR)/ft_perror.c \
 
