@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/09 13:46:09 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/09 19:39:59 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	handle_child2(int *fd, char **argv, char **envp)
 {
 	int	file2;
 
-	file2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC);
+	file2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (file2 < 0)
 	{
 		ft_perror("Failed to create file", argv[4]);
