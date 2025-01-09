@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 19:35:53 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/09 16:40:48 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:36:54 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,11 @@ int	create_fork(void)
 		exit(EXIT_FAILURE);
 	}
 	return (pid);
+}
+
+int	close_fd(int fd[2])
+{
+	close(fd[0]);
+	close(fd[1]);
+	return (EXIT_SUCCESS);
 }

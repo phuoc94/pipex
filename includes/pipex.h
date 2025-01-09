@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/09 16:41:21 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:37:02 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void	handle_child1(int *fd, char **argv, char **envp);
 void	handle_child2(int *fd, char **argv, char **envp);
 
 void	ft_perror(char *message, char *detail);
-
+int		close_fd(int fd[2]);
 #endif
