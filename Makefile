@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 18:26:02 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/09 13:50:35 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/11 21:08:08 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC_FILES = \
 	$(SRC_DIR)/execute.c \
 	$(SRC_DIR)/utils.c \
 	$(UTILS_DIR)/ft_perror.c \
+	$(UTILS_DIR)/path_utils.c \
 
 OBJS = $(SRC_FILES:.c=.o)
 
