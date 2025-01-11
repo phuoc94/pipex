@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/09 16:39:15 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/11 13:30:54 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static char	*find_cmd_path(char *cmd, char **envp)
 	char	*path;
 	char	**paths;
 	char	*cmd_path;
+	char	*cmd_path_tmp;
 	int		i;
 
 	i = 0;
@@ -42,8 +43,9 @@ static char	*find_cmd_path(char *cmd, char **envp)
 	paths = ft_split(path, ':');
 	while (paths[i])
 	{
-		cmd_path = ft_strjoin(paths[i], "/");
-		cmd_path = ft_strjoin(cmd_path, cmd);
+		cmd_path_tmp = ft_strjoin(paths[i], "/");
+		cmd_path = ft_strjoin(cmd_path_tmp, cmd);
+		free(cmd_path_tmp);
 		if (access(cmd_path, F_OK) == 0)
 		{
 			free_ft_split(paths);
@@ -72,7 +74,7 @@ void	execute_command(char *cmd, char **envp)
 	{
 		ft_perror("Command not found", args[0]);
 		free_ft_split(args);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 	if (execve(cmd_path, args, envp) == -1)
 	{

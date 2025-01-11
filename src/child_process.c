@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/09 19:39:59 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/11 13:40:02 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	handle_child1(int *fd, char **argv, char **envp)
 	close(fd[0]);
 	close(fd[1]);
 	execute_command(argv[2], envp);
+	exit(EXIT_SUCCESS);
 }
 
 void	handle_child2(int *fd, char **argv, char **envp)
@@ -44,4 +45,5 @@ void	handle_child2(int *fd, char **argv, char **envp)
 	close(fd[0]);
 	close(fd[1]);
 	execute_command(argv[3], envp);
+	exit(EXIT_SUCCESS);
 }
