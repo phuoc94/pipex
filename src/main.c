@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 07:26:04 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 13:41:53 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:58:11 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv, char **envp)
 	pid2 = create_fork();
 	if (pid2 == 0)
 		handle_child2(fd, argv, envp);
-	close_fd(fd);
+	close_pipe(fd);
 	if ((waitpid(pid1, &status1, 0) == -1)
 		|| (waitpid(pid2, &status2, 0) == -1))
 	{

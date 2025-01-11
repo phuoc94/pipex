@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 13:40:02 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:58:41 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	handle_child1(int *fd, char **argv, char **envp)
 	}
 	dup2(file1, STDIN_FILENO);
 	dup2(fd[1], STDOUT_FILENO);
-	close(fd[0]);
-	close(fd[1]);
+	close_pipe(fd);
 	execute_command(argv[2], envp);
+	close(file1);
 	exit(EXIT_SUCCESS);
 }
 
@@ -42,8 +42,8 @@ void	handle_child2(int *fd, char **argv, char **envp)
 	}
 	dup2(file2, STDOUT_FILENO);
 	dup2(fd[0], STDIN_FILENO);
-	close(fd[0]);
-	close(fd[1]);
+	close_pipe(fd);
 	execute_command(argv[3], envp);
+	close(file2);
 	exit(EXIT_SUCCESS);
 }
