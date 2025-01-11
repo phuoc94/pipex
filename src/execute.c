@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 13:30:54 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:01:02 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,28 @@ static char	*find_cmd_path(char *cmd, char **envp)
 	return (NULL);
 }
 
+static char	*get_cmd_path(char *cmd, char **envp)
+{
+	char	*cmd_path;
+
+	if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'))
+	{
+		if (access(cmd, F_OK) == 0)
+			return (ft_strdup(cmd));
+		else
+			return (NULL);
+	}
+	if (cmd[0] == '.' && cmd[1] == '.' && cmd[2] == '/')
+	{
+		if (access(cmd, F_OK) == 0)
+			return (ft_strdup(cmd));
+		else
+			return (NULL);
+	}
+	cmd_path = find_cmd_path(cmd, envp);
+	return (cmd_path);
+}
+
 void	execute_command(char *cmd, char **envp)
 {
 	char	**args;
@@ -69,7 +91,7 @@ void	execute_command(char *cmd, char **envp)
 		ft_perror("Failed to split command", cmd);
 		exit(EXIT_FAILURE);
 	}
-	cmd_path = find_cmd_path(args[0], envp);
+	cmd_path = get_cmd_path(args[0], envp);
 	if (cmd_path == NULL)
 	{
 		ft_perror("Command not found", args[0]);
@@ -82,5 +104,6 @@ void	execute_command(char *cmd, char **envp)
 		free_ft_split(args);
 		exit(EXIT_FAILURE);
 	}
+	free(cmd_path);
 	free_ft_split(args);
 }
