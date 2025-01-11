@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 19:01:02 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/11 19:05:24 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,19 @@ static char	*find_cmd_path(char *cmd, char **envp)
 
 static char	*get_cmd_path(char *cmd, char **envp)
 {
-	char	*cmd_path;
+	if (!cmd || !*cmd)
+		return (NULL);
 
-	if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'))
+	if (cmd[0] == '/' || cmd[0] == '.')
 	{
 		if (access(cmd, F_OK) == 0)
 			return (ft_strdup(cmd));
-		else
-			return (NULL);
+		return (NULL);
 	}
-	if (cmd[0] == '.' && cmd[1] == '.' && cmd[2] == '/')
-	{
-		if (access(cmd, F_OK) == 0)
-			return (ft_strdup(cmd));
-		else
-			return (NULL);
-	}
-	cmd_path = find_cmd_path(cmd, envp);
-	return (cmd_path);
+
+	if (!envp)
+		return (NULL);
+	return (find_cmd_path(cmd, envp));
 }
 
 void	execute_command(char *cmd, char **envp)
