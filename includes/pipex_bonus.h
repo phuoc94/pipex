@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/12 19:07:37 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/12 19:59:55 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_pipex
 	char	**envp;
 	int		prev_fd;
 	int		fd[2];
+	int		last_pid;
 }			t_pipex;
 
 int			validate_args(int argc, char **argv);

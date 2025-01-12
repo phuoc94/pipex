@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 07:26:04 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/12 19:09:56 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/12 20:11:11 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,32 @@ void	execute_pipes(t_pipex *pipex)
 		close(pipex->fd[1]);
 		i++;
 	}
+	pipex->last_pid = pid;
 	close(pipex->prev_fd);
 }
 
-int	wait_for_children(int argc)
+int	wait_for_children(t_pipex *pipex)
 {
 	int	status;
+	int	last_status;
 	int	i;
+	int	pid;
 
 	i = 0;
-	while (i < argc - 3)
+	last_status = 0;
+	while (i < pipex->argc - 3)
 	{
-		if (waitpid(-1, &status, 0) == -1)
+		pid = waitpid(-1, &status, 0);
+		if (pid == -1)
 		{
 			ft_perror("Failed to wait for child process", NULL);
 			return (EXIT_FAILURE);
 		}
+		if (pid == pipex->last_pid)
+			last_status = status;
 		i++;
 	}
-	return (status >> 8 & 255);
+	return (last_status >> 8 & 255);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -66,6 +73,7 @@ int	main(int argc, char **argv, char **envp)
 	pipex.argv = argv;
 	pipex.envp = envp;
 	pipex.prev_fd = -1;
+	pipex.last_pid = -1;
 	execute_pipes(&pipex);
-	return (wait_for_children(argc));
+	return (wait_for_children(&pipex));
 }
