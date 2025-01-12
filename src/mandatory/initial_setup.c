@@ -6,11 +6,11 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 21:26:52 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/09 16:41:08 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:33:11 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/pipex.h"
 
 int	validate_args(int argc, char **argv)
 {

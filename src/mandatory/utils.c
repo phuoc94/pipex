@@ -6,11 +6,11 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 19:35:53 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 14:57:19 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:29:14 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/pipex.h"
 
 int	create_pipe(int fd[2])
 {

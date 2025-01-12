@@ -6,11 +6,11 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 07:26:04 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 14:58:11 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:29:11 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/pipex.h"
 
 int	main(int argc, char **argv, char **envp)
 {
