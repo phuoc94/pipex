@@ -6,17 +6,17 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:21:30 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 21:48:25 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/12 13:35:18 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static size_t count_words(const char *s, char c)
+static size_t	count_words(const char *s, char c)
 {
-	size_t words;
-	size_t i;
-	size_t str_len;
+	size_t	words;
+	size_t	i;
+	size_t	str_len;
 
 	str_len = ft_strlen(s);
 	words = 0;
@@ -35,14 +35,13 @@ static size_t count_words(const char *s, char c)
 	return (words);
 }
 
-void free_ft_split(char ***ptr_strs)
+void	free_ft_split(char ***ptr_strs)
 {
-	char **strs;
-	int i;
+	char	**strs;
+	int		i;
 
 	if (ptr_strs == NULL || *ptr_strs == NULL)
-		return;
-
+		return ;
 	strs = *ptr_strs;
 	i = 0;
 	while (strs[i] != NULL)
@@ -55,11 +54,11 @@ void free_ft_split(char ***ptr_strs)
 	*ptr_strs = NULL;
 }
 
-static int split(char **strs, const char *s, char c, size_t n)
+static int	split(char **strs, const char *s, char c, size_t n)
 {
-	size_t i;
-	size_t current_word;
-	size_t cwordlen;
+	size_t	i;
+	size_t	current_word;
+	size_t	cwordlen;
 
 	current_word = 0;
 	i = 0;
@@ -91,12 +90,13 @@ static int split(char **strs, const char *s, char c, size_t n)
  * dynamically allocated and must be freed by the caller. The last element
  * of the array is set to NULL to mark the end of the array.
  *
- * Return: A pointer to the array of strings, or NULL if memory allocation fails.
+ * Return: A pointer to the array of strings,
+	or NULL if memory allocation fails.
  */
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **strs;
-	size_t strslen;
+	char	**strs;
+	size_t	strslen;
 
 	strslen = count_words(s, c);
 	strs = malloc((strslen + 1) * (sizeof(char *)));

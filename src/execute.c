@@ -6,24 +6,22 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 21:49:02 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/12 13:35:55 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-static	char	*get_cmd_path(char *cmd, char **envp)
+static char	*get_cmd_path(char *cmd, char **envp)
 {
 	if (!cmd || !*cmd)
 		return (NULL);
-
 	if (cmd[0] == '/' || cmd[0] == '.')
 	{
 		if (access(cmd, F_OK) == 0)
 			return (ft_strdup(cmd));
 		return (NULL);
 	}
-
 	if (!envp)
 		return (NULL);
 	return (find_cmd_path(cmd, envp));
