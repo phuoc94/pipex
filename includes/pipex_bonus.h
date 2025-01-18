@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 11:59:51 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:59:01 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../lib/libft/includes/libft.h"
 # include <sys/wait.h> // waitpid
+# include <fcntl.h>
 
 typedef struct s_pipex
 {
