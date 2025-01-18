@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/12 14:29:04 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:06:28 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	execute_command(char *cmd, char **envp)
 	if (execve(cmd_path, args, envp) == -1)
 	{
 		ft_perror("Command execution failed", args[0]);
+		free(cmd_path);
 		free_ft_split(&args);
 		exit(EXIT_FAILURE);
 	}
