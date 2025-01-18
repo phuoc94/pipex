@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 18:26:02 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/12 17:58:20 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/18 11:59:35 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,10 @@ SRC_FILES = \
 BONUS_FILES = \
 	$(BONUS_DIR)/main_bonus.c \
 	$(BONUS_DIR)/initial_setup_bonus.c \
-	$(BONUS_DIR)/child_process_bonus.c \
+	$(BONUS_DIR)/handle_first_child_bonus.c \
+	$(BONUS_DIR)/handle_middle_child_bonus.c \
+	$(BONUS_DIR)/handle_last_child_bonus.c \
+	$(BONUS_DIR)/read_here_doc_bonus.c \
 	$(SRC_DIR)/execute.c \
 	$(SRC_DIR)/utils.c \
 	$(UTILS_DIR)/ft_perror.c \
@@ -52,15 +55,17 @@ all: $(LIBFT_DIR) $(NAME)
 $(NAME): $(OBJS) $(LIBFT_PATH)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_PATH)
 
-bonus: $(LIBFT_DIR) $(BONUS_FILES)
+bonus: $(LIBFT_DIR) .bonus
+
+.bonus: $(BONUS_FILES) $(LIBFT_PATH)
 	$(CC) $(CFLAGS) -o $(NAME) $(BONUS_FILES) $(LIBFT_PATH)
-	touch bonus
+	touch .bonus
 
 $(LIBFT_PATH):
 	make -C $(LIBFT_DIR)
 
 clean:
-	rm bonus
+	rm -f .bonus
 	rm -f $(OBJS)
 
 fclean: clean

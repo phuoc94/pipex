@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 07:26:04 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/12 20:11:11 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:00:01 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	execute_pipes(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	while (i < pipex->argc - 3)
+	while (i < pipex->cmd_count)
 	{
 		create_pipe(pipex->fd);
 		pid = create_fork();
@@ -26,10 +26,10 @@ void	execute_pipes(t_pipex *pipex)
 		{
 			if (i == 0)
 				handle_first_child(pipex);
-			else if (i == pipex->argc - 4)
+			else if (i == pipex->cmd_count - 1)
 				handle_last_child(pipex);
 			else
-				handle_middle_child(pipex);
+				handle_middle_child(pipex, i);
 		}
 		close(pipex->prev_fd);
 		pipex->prev_fd = pipex->fd[0];
@@ -49,7 +49,7 @@ int	wait_for_children(t_pipex *pipex)
 
 	i = 0;
 	last_status = 0;
-	while (i < pipex->argc - 3)
+	while (i < pipex->cmd_count)
 	{
 		pid = waitpid(-1, &status, 0);
 		if (pid == -1)
@@ -61,7 +61,7 @@ int	wait_for_children(t_pipex *pipex)
 			last_status = status;
 		i++;
 	}
-	return (last_status >> 8 & 255);
+	return ((last_status >> 8) & 255);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -74,6 +74,16 @@ int	main(int argc, char **argv, char **envp)
 	pipex.envp = envp;
 	pipex.prev_fd = -1;
 	pipex.last_pid = -1;
+	pipex.here_doc = 0;
+	pipex.limiter = NULL;
+	pipex.cmd_count = argc - 3;
+	if (argc >= 3 && !ft_strcmp(argv[1], "here_doc"))
+	{
+		pipex.here_doc = 1;
+		pipex.limiter = argv[2];
+		pipex.cmd_count = argc - 4;
+		read_here_doc(&pipex);
+	}
 	execute_pipes(&pipex);
 	return (wait_for_children(&pipex));
 }
