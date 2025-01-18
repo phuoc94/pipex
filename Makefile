@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 18:26:02 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/18 11:59:35 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/18 18:35:42 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRC_FILES = \
 	$(SRC_DIR)/child_process.c \
 	$(SRC_DIR)/execute.c \
 	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/split_with_quotes.c \
+	$(SRC_DIR)/split_utils.c \
 	$(UTILS_DIR)/ft_perror.c \
 	$(UTILS_DIR)/path_utils.c \
 
@@ -36,6 +38,8 @@ BONUS_FILES = \
 	$(BONUS_DIR)/read_here_doc_bonus.c \
 	$(SRC_DIR)/execute.c \
 	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/split_with_quotes.c \
+	$(SRC_DIR)/split_utils.c \
 	$(UTILS_DIR)/ft_perror.c \
 	$(UTILS_DIR)/path_utils.c \
 

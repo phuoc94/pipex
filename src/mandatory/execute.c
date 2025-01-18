@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 15:06:28 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 18:05:48 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	execute_command(char *cmd, char **envp)
 	char	**args;
 	char	*cmd_path;
 
-	args = ft_split(cmd, ' ');
+	args = split_with_quotes(cmd);
 	if (args == NULL)
 	{
 		ft_perror("Failed to split command", cmd);
