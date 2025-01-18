@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:35:37 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 12:00:02 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:39:28 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	read_here_doc(t_pipex *pipex)
 		write(pipeline_fd[1], line, ft_strlen(line));
 		free(line);
 	}
-	close(pipeline_fd[1]);
+	close_fd(pipeline_fd[1]);
 	pipex->prev_fd = pipeline_fd[0];
 }

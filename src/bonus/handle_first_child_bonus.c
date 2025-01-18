@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:01:02 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 11:59:54 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:49:20 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	handle_here_doc(t_pipex *pipex)
 {
-	dup2(pipex->prev_fd, STDIN_FILENO);
-	close(pipex->prev_fd);
-	dup2(pipex->fd[1], STDOUT_FILENO);
+	safe_dup2(pipex->prev_fd, STDIN_FILENO);
+	close_fd(pipex->prev_fd);
+	safe_dup2(pipex->fd[1], STDOUT_FILENO);
 	close_pipe(pipex->fd);
 	execute_command(pipex->argv[3], pipex->envp);
 	exit(EXIT_SUCCESS);
@@ -32,10 +32,10 @@ static void	handle_non_here_doc(t_pipex *pipex)
 		ft_perror("Failed to open file", pipex->argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	dup2(file1, STDIN_FILENO);
-	dup2(pipex->fd[1], STDOUT_FILENO);
+	safe_dup2(file1, STDIN_FILENO);
+	safe_dup2(pipex->fd[1], STDOUT_FILENO);
 	close_pipe(pipex->fd);
-	close(file1);
+	close_fd(file1);
 	execute_command(pipex->argv[2], pipex->envp);
 	exit(EXIT_SUCCESS);
 }

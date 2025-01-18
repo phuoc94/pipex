@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:04:29 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 11:59:55 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:44:57 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	handle_here_doc_output(t_pipex *pipex, int index_output_file)
 			pipex->argv[index_output_file]);
 		exit(EXIT_FAILURE);
 	}
-	dup2(pipex->prev_fd, STDIN_FILENO);
-	dup2(file2, STDOUT_FILENO);
-	close(pipex->prev_fd);
-	close(file2);
+	safe_dup2(pipex->prev_fd, STDIN_FILENO);
+	safe_dup2(file2, STDOUT_FILENO);
+	close_fd(pipex->prev_fd);
+	close_fd(file2);
 	execute_command(pipex->argv[pipex->argc - 2], pipex->envp);
 	exit(EXIT_SUCCESS);
 }
@@ -44,10 +44,10 @@ static void	handle_non_here_doc_output(t_pipex *pipex, int index_output_file)
 			pipex->argv[index_output_file]);
 		exit(EXIT_FAILURE);
 	}
-	dup2(pipex->prev_fd, STDIN_FILENO);
-	dup2(file2, STDOUT_FILENO);
-	close(pipex->prev_fd);
-	close(file2);
+	safe_dup2(pipex->prev_fd, STDIN_FILENO);
+	safe_dup2(file2, STDOUT_FILENO);
+	close_fd(pipex->prev_fd);
+	close_fd(file2);
 	execute_command(pipex->argv[pipex->argc - 2], pipex->envp);
 	exit(EXIT_SUCCESS);
 }

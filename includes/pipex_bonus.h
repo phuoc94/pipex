@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 12:59:01 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:51:50 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../lib/libft/includes/libft.h"
 # include <sys/wait.h> // waitpid
 # include <fcntl.h>
+# include <stdbool.h>
 
 typedef struct s_pipex
 {
@@ -26,12 +27,12 @@ typedef struct s_pipex
 	int		fd[2];
 	int		last_pid;
 	int		cmd_count;
-	int		here_doc;
+	bool	here_doc;
 	char	*limiter;
 }			t_pipex;
 
-int			validate_args(int argc, char **argv);
-int			create_pipe(int fd[2]);
+void		validate_args(int argc, char **argv);
+void		create_pipe(int fd[2]);
 int			create_fork(void);
 void		execute_command(char *cmd, char **envp);
 void		handle_first_child(t_pipex *pipex);
@@ -41,5 +42,7 @@ char		*find_cmd_path(char *cmd, char **envp);
 void		read_here_doc(t_pipex *pipex);
 
 void		ft_perror(char *message, char *detail);
-int			close_pipe(int fd[2]);
+void		close_fd(int fd);
+void		close_pipe(int fd[2]);
+void		safe_dup2(int old_fd, int new_fd);
 #endif
