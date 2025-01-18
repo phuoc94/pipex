@@ -6,11 +6,11 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/12 13:35:55 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 18:05:48 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/pipex.h"
 
 static char	*get_cmd_path(char *cmd, char **envp)
 {
@@ -32,7 +32,7 @@ void	execute_command(char *cmd, char **envp)
 	char	**args;
 	char	*cmd_path;
 
-	args = ft_split(cmd, ' ');
+	args = split_with_quotes(cmd);
 	if (args == NULL)
 	{
 		ft_perror("Failed to split command", cmd);
@@ -48,6 +48,7 @@ void	execute_command(char *cmd, char **envp)
 	if (execve(cmd_path, args, envp) == -1)
 	{
 		ft_perror("Command execution failed", args[0]);
+		free(cmd_path);
 		free_ft_split(&args);
 		exit(EXIT_FAILURE);
 	}

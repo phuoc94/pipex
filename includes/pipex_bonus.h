@@ -1,34 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 18:30:47 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:51:50 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "../lib/libft/includes/libft.h"
-# include <fcntl.h> // open
 # include <sys/wait.h> // waitpid
+# include <fcntl.h>
+# include <stdbool.h>
+
+typedef struct s_pipex
+{
+	int		argc;
+	char	**argv;
+	char	**envp;
+	int		prev_fd;
+	int		fd[2];
+	int		last_pid;
+	int		cmd_count;
+	bool	here_doc;
+	char	*limiter;
+}			t_pipex;
 
 void		validate_args(int argc, char **argv);
 void		create_pipe(int fd[2]);
 int			create_fork(void);
 void		execute_command(char *cmd, char **envp);
-void		handle_child1(int *fd, char **argv, char **envp);
-void		handle_child2(int *fd, char **argv, char **envp);
+void		handle_first_child(t_pipex *pipex);
+void		handle_middle_child(t_pipex *pipex, int i);
+void		handle_last_child(t_pipex *pipex);
 char		*find_cmd_path(char *cmd, char **envp);
-char		**split_with_quotes(const char *cmd);
-
-const char	*find_quote_end(const char *start, char quote);
-const char	*find_token_end(const char *start);
-char		*create_token(const char *start, size_t len);
+void		read_here_doc(t_pipex *pipex);
 
 void		ft_perror(char *message, char *detail);
 void		close_fd(int fd);

@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 12:52:44 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/06 14:22:32 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/18 12:57:14 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,6 @@ SRC_FILES = \
 GNL_DIR = get_next_line
 GNL_SRC_FILES = \
 	get_next_line.c \
-	get_next_line_utils.c \
 
 FT_PRINTF_DIR = ft_printf
 FT_PRINTF_SRC_FILES = \

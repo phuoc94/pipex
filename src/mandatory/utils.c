@@ -6,20 +6,28 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 19:35:53 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 14:57:19 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:55:25 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/pipex.h"
 
-int	create_pipe(int fd[2])
+void	create_pipe(int fd[2])
 {
 	if (pipe(fd) == -1)
 	{
 		ft_perror("Create pipe failed", NULL);
 		exit(EXIT_FAILURE);
 	}
-	return (EXIT_SUCCESS);
+}
+
+void	safe_dup2(int old_fd, int new_fd)
+{
+	if (dup2(old_fd, new_fd) == -1)
+	{
+		ft_perror("Dup2 failed", NULL);
+		exit(EXIT_FAILURE);
+	}
 }
 
 int	create_fork(void)
@@ -35,9 +43,17 @@ int	create_fork(void)
 	return (pid);
 }
 
-int	close_pipe(int fd[2])
+void	close_fd(int fd)
 {
-	close(fd[0]);
-	close(fd[1]);
-	return (EXIT_SUCCESS);
+	if (fd >= 0 && close(fd) == -1)
+	{
+		ft_perror("Close file descriptor failed", NULL);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	close_pipe(int fd[2])
+{
+	close_fd(fd[0]);
+	close_fd(fd[1]);
 }

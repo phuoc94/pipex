@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   initial_setup_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/15 16:47:12 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 13:05:45 by phuocngu         ###   ########.fr       */
+/*   Created: 2025/01/02 21:26:52 by phuocngu          #+#    #+#             */
+/*   Updated: 2025/01/18 13:49:00 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../../includes/pipex_bonus.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 12
-# endif
-
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft.h"
-
-char	*get_next_line(int fd);
-
-#endif
+void	validate_args(int argc, char **argv)
+{
+	(void)argv;
+	if (argc < 5)
+	{
+		ft_perror("Invalid argument", NULL);
+		ft_putstr_fd("Usage: ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2\n", 2);
+		exit(EXIT_FAILURE);
+	}
+}

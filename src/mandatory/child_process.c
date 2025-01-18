@@ -6,11 +6,11 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/11 14:58:41 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:45:08 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pipex.h"
+#include "../../includes/pipex.h"
 
 void	handle_child1(int *fd, char **argv, char **envp)
 {
@@ -22,11 +22,11 @@ void	handle_child1(int *fd, char **argv, char **envp)
 		ft_perror("Failed to open file", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	dup2(file1, STDIN_FILENO);
-	dup2(fd[1], STDOUT_FILENO);
+	safe_dup2(file1, STDIN_FILENO);
+	safe_dup2(fd[1], STDOUT_FILENO);
 	close_pipe(fd);
 	execute_command(argv[2], envp);
-	close(file1);
+	close_fd(file1);
 	exit(EXIT_SUCCESS);
 }
 
@@ -40,10 +40,10 @@ void	handle_child2(int *fd, char **argv, char **envp)
 		ft_perror("Failed to create file", argv[4]);
 		exit(EXIT_FAILURE);
 	}
-	dup2(file2, STDOUT_FILENO);
-	dup2(fd[0], STDIN_FILENO);
+	safe_dup2(file2, STDOUT_FILENO);
+	safe_dup2(fd[0], STDIN_FILENO);
 	close_pipe(fd);
 	execute_command(argv[3], envp);
-	close(file2);
+	close_fd(file2);
 	exit(EXIT_SUCCESS);
 }
