@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 07:26:04 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/12 14:29:11 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:16:21 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int	main(int argc, char **argv, char **envp)
 	pid2 = create_fork();
 	if (pid2 == 0)
 		handle_child2(fd, argv, envp);
-	close_pipe(fd);
+	close_fd(fd[1]);
 	if ((waitpid(pid1, &status1, 0) == -1)
 		|| (waitpid(pid2, &status2, 0) == -1))
 	{
 		ft_perror("Failed to wait for child process", NULL);
 		return (EXIT_FAILURE);
 	}
+	close_fd(fd[0]);
 	return (status2 >> 8 & 255);
 }
