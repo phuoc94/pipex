@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 07:26:04 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 13:38:00 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:03:56 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ int	wait_for_children(t_pipex *pipex)
 		pid = waitpid(-1, &status, 0);
 		if (pid == -1)
 		{
-			ft_perror("Failed to wait for child process", NULL);
-			return (EXIT_FAILURE);
+			perror("waitpid");
+			exit(EXIT_FAILURE);
 		}
 		if (pid == pipex->last_pid)
 			last_status = status;

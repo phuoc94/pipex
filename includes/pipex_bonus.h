@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 13:51:50 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:07:46 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <sys/wait.h> // waitpid
 # include <fcntl.h>
 # include <stdbool.h>
+# include <errno.h>
+# include <stdio.h> // perror
+# include <string.h> // strerror
 
 typedef struct s_pipex
 {

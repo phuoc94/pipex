@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 18:03:36 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 23:44:10 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:56:33 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static char	**add_token_to_args(char **args, int *count, char *token)
 	new_args = malloc(sizeof(char *) * (*count + 2));
 	if (!new_args)
 	{
-		ft_perror("Memory allocation failed", "malloc");
+		free(args);
+		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
 	i = 0;
@@ -79,7 +80,10 @@ char	**split_with_quotes(const char *cmd)
 
 	args = malloc(sizeof(char *));
 	if (!args)
-		return (NULL);
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
 	args[0] = NULL;
 	count = 0;
 	while (*start)

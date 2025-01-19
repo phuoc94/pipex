@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 18:05:48 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:06:27 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,23 @@ void	execute_command(char *cmd, char **envp)
 	char	*cmd_path;
 
 	args = split_with_quotes(cmd);
-	if (args == NULL)
-	{
-		ft_perror("Failed to split command", cmd);
-		exit(EXIT_FAILURE);
-	}
 	cmd_path = get_cmd_path(args[0], envp);
 	if (cmd_path == NULL)
 	{
-		ft_perror("Command not found", args[0]);
+		ft_printf_fd(STDERR_FILENO, "pipex: %s: command not found\n", args[0]);
 		free_ft_split(&args);
 		exit(127);
 	}
 	if (execve(cmd_path, args, envp) == -1)
 	{
-		ft_perror("Command execution failed", args[0]);
+		ft_printf_fd(STDERR_FILENO, "pipex: %s: %s\n", args[0],
+			strerror(errno));
 		free(cmd_path);
 		free_ft_split(&args);
-		exit(EXIT_FAILURE);
+		if (errno == ENOENT)
+			exit(127);
+		else
+			exit(126);
 	}
 	free(cmd_path);
 	free_ft_split(&args);

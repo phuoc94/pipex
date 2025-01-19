@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 18:27:36 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 18:37:02 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:03:46 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*create_token(const char *start, size_t len)
 	token = ft_substr(start, 0, len);
 	if (!token)
 	{
-		ft_perror("Memory allocation failed", "ft_substr");
+		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
 	return (token);

@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 19:35:53 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 13:55:25 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:03:33 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	create_pipe(int fd[2])
 {
 	if (pipe(fd) == -1)
 	{
-		ft_perror("Create pipe failed", NULL);
+		perror("pipe");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -25,7 +25,7 @@ void	safe_dup2(int old_fd, int new_fd)
 {
 	if (dup2(old_fd, new_fd) == -1)
 	{
-		ft_perror("Dup2 failed", NULL);
+		perror("dup2");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -37,7 +37,7 @@ int	create_fork(void)
 	pid = fork();
 	if (pid == -1)
 	{
-		ft_perror("Create fork failed", NULL);
+		perror("fork");
 		exit(EXIT_FAILURE);
 	}
 	return (pid);
@@ -47,7 +47,7 @@ void	close_fd(int fd)
 {
 	if (fd >= 0 && close(fd) == -1)
 	{
-		ft_perror("Close file descriptor failed", NULL);
+		perror("close");
 		exit(EXIT_FAILURE);
 	}
 }

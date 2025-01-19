@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 18:30:47 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:07:41 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "../lib/libft/includes/libft.h"
 # include <fcntl.h> // open
 # include <sys/wait.h> // waitpid
+# include <errno.h> // errno
+# include <stdio.h> // perror
+# include <string.h> // strerror
 
 void		validate_args(int argc, char **argv);
 void		create_pipe(int fd[2]);
