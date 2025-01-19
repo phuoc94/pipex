@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 07:26:04 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/19 16:05:41 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 16:23:20 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static	void	handle_parent(int fd[2], int pid1, int pid2)
 	int	status2;
 
 	close_fd(fd[1]);
+	close_fd(fd[0]);
 	wait_for_child(pid1, &status1);
 	wait_for_child(pid2, &status2);
-	close_fd(fd[0]);
 	exit(status2 >> 8 & 255);
 }
 
