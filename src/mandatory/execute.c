@@ -6,13 +6,13 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/19 16:06:27 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 17:42:25 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/pipex.h"
 
-static char	*get_cmd_path(char *cmd, char **envp)
+static char *get_cmd_path(char *cmd, char **envp)
 {
 	if (!cmd || !*cmd)
 		return (NULL);
@@ -27,30 +27,19 @@ static char	*get_cmd_path(char *cmd, char **envp)
 	return (find_cmd_path(cmd, envp));
 }
 
-void	execute_command(char *cmd, char **envp)
+void execute_command(char *cmd, char **envp)
 {
-	char	**args;
-	char	*cmd_path;
+	char **args;
+	char *cmd_path;
 
 	args = split_with_quotes(cmd);
 	cmd_path = get_cmd_path(args[0], envp);
-	if (cmd_path == NULL)
-	{
-		ft_printf_fd(STDERR_FILENO, "pipex: %s: command not found\n", args[0]);
-		free_ft_split(&args);
-		exit(127);
-	}
+	if (cmd_path == NULL || access(cmd_path, F_OK) != 0)
+		handle_cmd_not_found(args);
+	else if (access(cmd_path, X_OK) != 0)
+		handle_permission_denied(cmd_path, args);
 	if (execve(cmd_path, args, envp) == -1)
-	{
-		ft_printf_fd(STDERR_FILENO, "pipex: %s: %s\n", args[0],
-			strerror(errno));
-		free(cmd_path);
-		free_ft_split(&args);
-		if (errno == ENOENT)
-			exit(127);
-		else
-			exit(126);
-	}
+		handle_execve_error(cmd_path, args);
 	free(cmd_path);
 	free_ft_split(&args);
 }

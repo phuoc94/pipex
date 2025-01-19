@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/02 18:26:02 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/18 18:35:42 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/19 17:43:27 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_FILES = \
 	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/split_with_quotes.c \
 	$(SRC_DIR)/split_utils.c \
+	$(SRC_DIR)/error_handlers.c \
 	$(UTILS_DIR)/ft_perror.c \
 	$(UTILS_DIR)/path_utils.c \
 
@@ -36,6 +37,7 @@ BONUS_FILES = \
 	$(BONUS_DIR)/handle_middle_child_bonus.c \
 	$(BONUS_DIR)/handle_last_child_bonus.c \
 	$(BONUS_DIR)/read_here_doc_bonus.c \
+	$(SRC_DIR)/error_handlers.c \
 	$(SRC_DIR)/execute.c \
 	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/split_with_quotes.c \

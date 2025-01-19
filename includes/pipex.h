@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/19 16:07:41 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 17:39:11 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void		handle_child1(int *fd, char **argv, char **envp);
 void		handle_child2(int *fd, char **argv, char **envp);
 char		*find_cmd_path(char *cmd, char **envp);
 char		**split_with_quotes(const char *cmd);
+void		handle_cmd_not_found(char **args);
+void		handle_permission_denied(char *cmd_path, char **args);
+void		handle_execve_error(char *cmd_path, char **args);
+
 
 const char	*find_quote_end(const char *start, char quote);
 const char	*find_token_end(const char *start);
