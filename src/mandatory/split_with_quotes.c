@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 18:03:36 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/18 18:28:26 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/18 23:44:10 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,10 @@ char	**split_with_quotes(const char *cmd)
 	const char	*start = cmd;
 	char		*token;
 
-	args = NULL;
+	args = malloc(sizeof(char *));
+	if (!args)
+		return (NULL);
+	args[0] = NULL;
 	count = 0;
 	while (*start)
 	{
