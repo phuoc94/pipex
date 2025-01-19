@@ -6,13 +6,13 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 23:10:51 by phuocngu          #+#    #+#             */
-/*   Updated: 2024/11/14 17:50:46 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:37:57 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	print_hex(unsigned long n, int uppercase)
+int	print_hex(unsigned long n, int uppercase, int fd)
 {
 	const char	*hex;
 	int			len;
@@ -25,19 +25,19 @@ int	print_hex(unsigned long n, int uppercase)
 	len = 0;
 	if (n >= 16)
 	{
-		result = print_hex((n / 16), uppercase);
+		result = print_hex((n / 16), uppercase, fd);
 		if (result == -1)
 			return (result);
 		len += result;
 	}
-	result = write(1, &hex[n % 16], 1);
+	result = write(fd, &hex[n % 16], 1);
 	if (result == -1)
 		return (result);
 	len += result;
 	return (len);
 }
 
-int	ft_print_ptr(void *ptr)
+int	ft_print_ptr(void *ptr, int fd)
 {
 	int	len;
 	int	result;
@@ -50,7 +50,7 @@ int	ft_print_ptr(void *ptr)
 	if (result == -1)
 		return (result);
 	len += result;
-	result = print_hex((unsigned long)ptr, 0);
+	result = print_hex((unsigned long)ptr, 0, fd);
 	if (result == -1)
 		return (result);
 	len += result;
