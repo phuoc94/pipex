@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/19 17:39:11 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/19 18:05:34 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void		validate_args(int argc, char **argv);
 void		create_pipe(int fd[2]);
 int			create_fork(void);
 void		execute_command(char *cmd, char **envp);
-void		handle_child1(int *fd, char **argv, char **envp);
-void		handle_child2(int *fd, char **argv, char **envp);
+void		handle_child1(int fd[2], char **argv, char **envp);
+void		handle_child2(int fd[2], char **argv, char **envp);
 char		*find_cmd_path(char *cmd, char **envp);
 char		**split_with_quotes(const char *cmd);
 void		handle_cmd_not_found(char **args);
