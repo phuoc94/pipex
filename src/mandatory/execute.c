@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/21 09:14:52 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:57:04 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*get_cmd_path(char *cmd, char **envp)
 {
 	if (!cmd || !*cmd)
 		return (NULL);
-	if (cmd[0] == '/' || cmd[0] == '.')
+	if (ft_strchr(cmd, '/'))
 	{
 		if (access(cmd, F_OK) == 0)
 			return (ft_strdup(cmd));

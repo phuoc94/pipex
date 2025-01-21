@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 12:56:43 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/19 16:07:46 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:51:40 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		handle_middle_child(t_pipex *pipex, int i);
 void		handle_last_child(t_pipex *pipex);
 char		*find_cmd_path(char *cmd, char **envp);
 void		read_here_doc(t_pipex *pipex);
+void		print_pipex_error(char *arg);
 
 void		ft_perror(char *message, char *detail);
 void		close_fd(int fd);
