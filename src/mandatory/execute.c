@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:21:24 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/21 09:57:04 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:21:52 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ void	execute_command(char *cmd, char **envp)
 	char	*cmd_path;
 
 	args = split_with_quotes(cmd);
+	if (args[0] == NULL)
+	{
+		ft_putstr_fd("pipex: ", STDERR_FILENO);
+		ft_putstr_fd(cmd, STDERR_FILENO);
+		ft_putstr_fd(": Command not found\n", STDERR_FILENO);
+		free_ft_split(&args);
+		exit(127);
+	}
 	cmd_path = get_cmd_path(args[0], envp);
 	if (cmd_path == NULL)
 		handle_cmd_not_found(args);
