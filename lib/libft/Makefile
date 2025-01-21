@@ -6,7 +6,7 @@
 #    By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/29 12:52:44 by phuocngu          #+#    #+#              #
-#    Updated: 2025/01/18 12:57:14 by phuocngu         ###   ########.fr        #
+#    Updated: 2025/01/21 12:03:32 by phuocngu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC_FILES = \
 	string/ft_strmapi.c \
 	string/ft_striteri.c \
 	string/ft_strnstr.c \
+	string/ft_strallspace.c \
 	memory/ft_memset.c \
 	memory/ft_bzero.c \
 	memory/ft_memcpy.c \
