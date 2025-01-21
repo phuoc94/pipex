@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:04:29 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/21 08:53:11 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:05:19 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ static void	handle_non_here_doc_output(t_pipex *pipex, int index_output_file)
 		exit(EXIT_FAILURE);
 	}
 	safe_dup2(pipex->prev_fd, STDIN_FILENO);
-	safe_dup2(file2, STDOUT_FILENO);
 	close_fd(pipex->prev_fd);
+	safe_dup2(file2, STDOUT_FILENO);
 	close_fd(file2);
+	close_pipe(pipex->fd);
 	execute_command(pipex->argv[pipex->argc - 2], pipex->envp);
 	exit(EXIT_SUCCESS);
 }
