@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:04:29 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/19 15:50:06 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/21 08:53:11 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ static void	handle_here_doc_output(t_pipex *pipex, int index_output_file)
 			0644);
 	if (file2 < 0)
 	{
-		ft_printf_fd(STDERR_FILENO, "pipex: %s: %s\n",
-			pipex->argv[index_output_file], strerror(errno));
+		print_pipex_error(pipex->argv[index_output_file]);
 		exit(EXIT_FAILURE);
 	}
 	safe_dup2(pipex->prev_fd, STDIN_FILENO);
@@ -40,8 +39,7 @@ static void	handle_non_here_doc_output(t_pipex *pipex, int index_output_file)
 			0644);
 	if (file2 < 0)
 	{
-		ft_printf_fd(STDERR_FILENO, "pipex: %s: %s\n",
-			pipex->argv[index_output_file], strerror(errno));
+		print_pipex_error(pipex->argv[index_output_file]);
 		exit(EXIT_FAILURE);
 	}
 	safe_dup2(pipex->prev_fd, STDIN_FILENO);

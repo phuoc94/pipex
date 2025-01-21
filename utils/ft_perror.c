@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 21:05:58 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/07 21:46:18 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/21 09:07:36 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,15 @@ void	ft_perror(char *message, char *detail)
 		ft_putstr_fd(strerror(errno), STDERR_FILENO);
 		ft_putstr_fd("\n", STDERR_FILENO);
 	}
+}
+
+void	print_pipex_error(char *arg)
+{
+	if (!arg)
+		return ;
+	ft_putstr_fd("pipex: ", STDERR_FILENO);
+	ft_putstr_fd(arg, STDERR_FILENO);
+	ft_putstr_fd(": ", STDERR_FILENO);
+	ft_putstr_fd(strerror(errno), STDERR_FILENO);
+	ft_putstr_fd("\n", STDERR_FILENO);
 }

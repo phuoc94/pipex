@@ -6,7 +6,7 @@
 /*   By: phuocngu <phuocngu@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 19:01:02 by phuocngu          #+#    #+#             */
-/*   Updated: 2025/01/19 15:49:13 by phuocngu         ###   ########.fr       */
+/*   Updated: 2025/01/21 08:51:46 by phuocngu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static void	handle_non_here_doc(t_pipex *pipex)
 	file1 = open(pipex->argv[1], O_RDONLY);
 	if (file1 < 0)
 	{
-		ft_printf_fd(STDERR_FILENO, "pipex: %s: %s\n", pipex->argv[1],
-			strerror(errno));
+		print_pipex_error(pipex->argv[1]);
 		exit(EXIT_FAILURE);
 	}
 	safe_dup2(file1, STDIN_FILENO);
